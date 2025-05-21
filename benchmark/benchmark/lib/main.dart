@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'package:benchmark/benchmark.dart';
 import 'package:benchmark/widgets/benchmark_card.dart';
 import 'package:benchmark/widgets/benchmark_section.dart';
-import 'package:dio/dio.dart';
+import;
 import 'package:dio/io.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';

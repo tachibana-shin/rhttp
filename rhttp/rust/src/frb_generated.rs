@@ -898,6 +898,9 @@ impl SseDecode for crate::api::client::ClientCertificate {
 impl SseDecode for crate::api::client::ClientSettings {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_emulator = <Option<crate::api::client::Emulation>>::sse_decode(deserializer);
+        let mut var_emulatorOption =
+            <Option<crate::api::client::EmulationOption>>::sse_decode(deserializer);
         let mut var_cookieSettings =
             <Option<crate::api::client::CookieSettings>>::sse_decode(deserializer);
         let mut var_httpVersionPref = <crate::api::http::HttpVersionPref>::sse_decode(deserializer);
@@ -913,6 +916,8 @@ impl SseDecode for crate::api::client::ClientSettings {
         let mut var_dnsSettings = <Option<DnsSettings>>::sse_decode(deserializer);
         let mut var_userAgent = <Option<String>>::sse_decode(deserializer);
         return crate::api::client::ClientSettings {
+            emulator: var_emulator,
+            emulator_option: var_emulatorOption,
             cookie_settings: var_cookieSettings,
             http_version_pref: var_httpVersionPref,
             timeout_settings: var_timeoutSettings,
@@ -944,6 +949,116 @@ impl SseDecode for crate::api::client::CustomProxy {
         return crate::api::client::CustomProxy {
             url: var_url,
             condition: var_condition,
+        };
+    }
+}
+
+impl SseDecode for crate::api::client::Emulation {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::api::client::Emulation::Chrome100,
+            1 => crate::api::client::Emulation::Chrome101,
+            2 => crate::api::client::Emulation::Chrome104,
+            3 => crate::api::client::Emulation::Chrome105,
+            4 => crate::api::client::Emulation::Chrome106,
+            5 => crate::api::client::Emulation::Chrome107,
+            6 => crate::api::client::Emulation::Chrome108,
+            7 => crate::api::client::Emulation::Chrome109,
+            8 => crate::api::client::Emulation::Chrome110,
+            9 => crate::api::client::Emulation::Chrome114,
+            10 => crate::api::client::Emulation::Chrome116,
+            11 => crate::api::client::Emulation::Chrome117,
+            12 => crate::api::client::Emulation::Chrome118,
+            13 => crate::api::client::Emulation::Chrome119,
+            14 => crate::api::client::Emulation::Chrome120,
+            15 => crate::api::client::Emulation::Chrome123,
+            16 => crate::api::client::Emulation::Chrome124,
+            17 => crate::api::client::Emulation::Chrome126,
+            18 => crate::api::client::Emulation::Chrome127,
+            19 => crate::api::client::Emulation::Chrome128,
+            20 => crate::api::client::Emulation::Chrome129,
+            21 => crate::api::client::Emulation::Chrome130,
+            22 => crate::api::client::Emulation::Chrome131,
+            23 => crate::api::client::Emulation::Chrome132,
+            24 => crate::api::client::Emulation::Chrome133,
+            25 => crate::api::client::Emulation::Chrome134,
+            26 => crate::api::client::Emulation::Chrome135,
+            27 => crate::api::client::Emulation::Chrome136,
+            28 => crate::api::client::Emulation::SafariIos17_2,
+            29 => crate::api::client::Emulation::SafariIos17_4_1,
+            30 => crate::api::client::Emulation::SafariIos16_5,
+            31 => crate::api::client::Emulation::Safari15_3,
+            32 => crate::api::client::Emulation::Safari15_5,
+            33 => crate::api::client::Emulation::Safari15_6_1,
+            34 => crate::api::client::Emulation::Safari16,
+            35 => crate::api::client::Emulation::Safari16_5,
+            36 => crate::api::client::Emulation::Safari17_0,
+            37 => crate::api::client::Emulation::Safari17_2_1,
+            38 => crate::api::client::Emulation::Safari17_4_1,
+            39 => crate::api::client::Emulation::Safari17_5,
+            40 => crate::api::client::Emulation::Safari18,
+            41 => crate::api::client::Emulation::SafariIPad18,
+            42 => crate::api::client::Emulation::Safari18_2,
+            43 => crate::api::client::Emulation::SafariIos18_1_1,
+            44 => crate::api::client::Emulation::Safari18_3,
+            45 => crate::api::client::Emulation::Safari18_3_1,
+            46 => crate::api::client::Emulation::OkHttp3_9,
+            47 => crate::api::client::Emulation::OkHttp3_11,
+            48 => crate::api::client::Emulation::OkHttp3_13,
+            49 => crate::api::client::Emulation::OkHttp3_14,
+            50 => crate::api::client::Emulation::OkHttp4_9,
+            51 => crate::api::client::Emulation::OkHttp4_10,
+            52 => crate::api::client::Emulation::OkHttp4_12,
+            53 => crate::api::client::Emulation::OkHttp5,
+            54 => crate::api::client::Emulation::Edge101,
+            55 => crate::api::client::Emulation::Edge122,
+            56 => crate::api::client::Emulation::Edge127,
+            57 => crate::api::client::Emulation::Edge131,
+            58 => crate::api::client::Emulation::Edge134,
+            59 => crate::api::client::Emulation::Firefox109,
+            60 => crate::api::client::Emulation::Firefox117,
+            61 => crate::api::client::Emulation::Firefox128,
+            62 => crate::api::client::Emulation::Firefox133,
+            63 => crate::api::client::Emulation::Firefox135,
+            64 => crate::api::client::Emulation::FirefoxPrivate135,
+            65 => crate::api::client::Emulation::FirefoxAndroid135,
+            66 => crate::api::client::Emulation::Firefox136,
+            67 => crate::api::client::Emulation::FirefoxPrivate136,
+            _ => unreachable!("Invalid variant for Emulation: {}", inner),
+        };
+    }
+}
+
+impl SseDecode for crate::api::client::EmulationOption {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut var_emulation = <Option<crate::api::client::Emulation>>::sse_decode(deserializer);
+        let mut var_emulationOs =
+            <Option<crate::api::client::EmulationOS>>::sse_decode(deserializer);
+        let mut var_skipHttp2 = <Option<bool>>::sse_decode(deserializer);
+        let mut var_skipHeaders = <Option<bool>>::sse_decode(deserializer);
+        return crate::api::client::EmulationOption {
+            emulation: var_emulation,
+            emulation_os: var_emulationOs,
+            skip_http2: var_skipHttp2,
+            skip_headers: var_skipHeaders,
+        };
+    }
+}
+
+impl SseDecode for crate::api::client::EmulationOS {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        let mut inner = <i32>::sse_decode(deserializer);
+        return match inner {
+            0 => crate::api::client::EmulationOS::Windows,
+            1 => crate::api::client::EmulationOS::MacOS,
+            2 => crate::api::client::EmulationOS::Linux,
+            3 => crate::api::client::EmulationOS::Android,
+            4 => crate::api::client::EmulationOS::IOS,
+            _ => unreachable!("Invalid variant for EmulationOS: {}", inner),
         };
     }
 }
@@ -1299,6 +1414,17 @@ impl SseDecode for Option<chrono::Duration> {
     }
 }
 
+impl SseDecode for Option<bool> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        if (<bool>::sse_decode(deserializer)) {
+            return Some(<bool>::sse_decode(deserializer));
+        } else {
+            return None;
+        }
+    }
+}
+
 impl SseDecode for Option<crate::api::client::ClientCertificate> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
@@ -1332,6 +1458,41 @@ impl SseDecode for Option<crate::api::client::CookieSettings> {
             return Some(<crate::api::client::CookieSettings>::sse_decode(
                 deserializer,
             ));
+        } else {
+            return None;
+        }
+    }
+}
+
+impl SseDecode for Option<crate::api::client::Emulation> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        if (<bool>::sse_decode(deserializer)) {
+            return Some(<crate::api::client::Emulation>::sse_decode(deserializer));
+        } else {
+            return None;
+        }
+    }
+}
+
+impl SseDecode for Option<crate::api::client::EmulationOption> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        if (<bool>::sse_decode(deserializer)) {
+            return Some(<crate::api::client::EmulationOption>::sse_decode(
+                deserializer,
+            ));
+        } else {
+            return None;
+        }
+    }
+}
+
+impl SseDecode for Option<crate::api::client::EmulationOS> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_decode(deserializer: &mut flutter_rust_bridge::for_generated::SseDeserializer) -> Self {
+        if (<bool>::sse_decode(deserializer)) {
+            return Some(<crate::api::client::EmulationOS>::sse_decode(deserializer));
         } else {
             return None;
         }
@@ -1827,6 +1988,8 @@ impl flutter_rust_bridge::IntoIntoDart<crate::api::client::ClientCertificate>
 impl flutter_rust_bridge::IntoDart for crate::api::client::ClientSettings {
     fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
         [
+            self.emulator.into_into_dart().into_dart(),
+            self.emulator_option.into_into_dart().into_dart(),
             self.cookie_settings.into_into_dart().into_dart(),
             self.http_version_pref.into_into_dart().into_dart(),
             self.timeout_settings.into_into_dart().into_dart(),
@@ -1886,6 +2049,137 @@ impl flutter_rust_bridge::IntoIntoDart<crate::api::client::CustomProxy>
     for crate::api::client::CustomProxy
 {
     fn into_into_dart(self) -> crate::api::client::CustomProxy {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::client::Emulation {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            Self::Chrome100 => 0.into_dart(),
+            Self::Chrome101 => 1.into_dart(),
+            Self::Chrome104 => 2.into_dart(),
+            Self::Chrome105 => 3.into_dart(),
+            Self::Chrome106 => 4.into_dart(),
+            Self::Chrome107 => 5.into_dart(),
+            Self::Chrome108 => 6.into_dart(),
+            Self::Chrome109 => 7.into_dart(),
+            Self::Chrome110 => 8.into_dart(),
+            Self::Chrome114 => 9.into_dart(),
+            Self::Chrome116 => 10.into_dart(),
+            Self::Chrome117 => 11.into_dart(),
+            Self::Chrome118 => 12.into_dart(),
+            Self::Chrome119 => 13.into_dart(),
+            Self::Chrome120 => 14.into_dart(),
+            Self::Chrome123 => 15.into_dart(),
+            Self::Chrome124 => 16.into_dart(),
+            Self::Chrome126 => 17.into_dart(),
+            Self::Chrome127 => 18.into_dart(),
+            Self::Chrome128 => 19.into_dart(),
+            Self::Chrome129 => 20.into_dart(),
+            Self::Chrome130 => 21.into_dart(),
+            Self::Chrome131 => 22.into_dart(),
+            Self::Chrome132 => 23.into_dart(),
+            Self::Chrome133 => 24.into_dart(),
+            Self::Chrome134 => 25.into_dart(),
+            Self::Chrome135 => 26.into_dart(),
+            Self::Chrome136 => 27.into_dart(),
+            Self::SafariIos17_2 => 28.into_dart(),
+            Self::SafariIos17_4_1 => 29.into_dart(),
+            Self::SafariIos16_5 => 30.into_dart(),
+            Self::Safari15_3 => 31.into_dart(),
+            Self::Safari15_5 => 32.into_dart(),
+            Self::Safari15_6_1 => 33.into_dart(),
+            Self::Safari16 => 34.into_dart(),
+            Self::Safari16_5 => 35.into_dart(),
+            Self::Safari17_0 => 36.into_dart(),
+            Self::Safari17_2_1 => 37.into_dart(),
+            Self::Safari17_4_1 => 38.into_dart(),
+            Self::Safari17_5 => 39.into_dart(),
+            Self::Safari18 => 40.into_dart(),
+            Self::SafariIPad18 => 41.into_dart(),
+            Self::Safari18_2 => 42.into_dart(),
+            Self::SafariIos18_1_1 => 43.into_dart(),
+            Self::Safari18_3 => 44.into_dart(),
+            Self::Safari18_3_1 => 45.into_dart(),
+            Self::OkHttp3_9 => 46.into_dart(),
+            Self::OkHttp3_11 => 47.into_dart(),
+            Self::OkHttp3_13 => 48.into_dart(),
+            Self::OkHttp3_14 => 49.into_dart(),
+            Self::OkHttp4_9 => 50.into_dart(),
+            Self::OkHttp4_10 => 51.into_dart(),
+            Self::OkHttp4_12 => 52.into_dart(),
+            Self::OkHttp5 => 53.into_dart(),
+            Self::Edge101 => 54.into_dart(),
+            Self::Edge122 => 55.into_dart(),
+            Self::Edge127 => 56.into_dart(),
+            Self::Edge131 => 57.into_dart(),
+            Self::Edge134 => 58.into_dart(),
+            Self::Firefox109 => 59.into_dart(),
+            Self::Firefox117 => 60.into_dart(),
+            Self::Firefox128 => 61.into_dart(),
+            Self::Firefox133 => 62.into_dart(),
+            Self::Firefox135 => 63.into_dart(),
+            Self::FirefoxPrivate135 => 64.into_dart(),
+            Self::FirefoxAndroid135 => 65.into_dart(),
+            Self::Firefox136 => 66.into_dart(),
+            Self::FirefoxPrivate136 => 67.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive for crate::api::client::Emulation {}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::client::Emulation>
+    for crate::api::client::Emulation
+{
+    fn into_into_dart(self) -> crate::api::client::Emulation {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::client::EmulationOption {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        [
+            self.emulation.into_into_dart().into_dart(),
+            self.emulation_os.into_into_dart().into_dart(),
+            self.skip_http2.into_into_dart().into_dart(),
+            self.skip_headers.into_into_dart().into_dart(),
+        ]
+        .into_dart()
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::client::EmulationOption
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::client::EmulationOption>
+    for crate::api::client::EmulationOption
+{
+    fn into_into_dart(self) -> crate::api::client::EmulationOption {
+        self
+    }
+}
+// Codec=Dco (DartCObject based), see doc to use other codecs
+impl flutter_rust_bridge::IntoDart for crate::api::client::EmulationOS {
+    fn into_dart(self) -> flutter_rust_bridge::for_generated::DartAbi {
+        match self {
+            Self::Windows => 0.into_dart(),
+            Self::MacOS => 1.into_dart(),
+            Self::Linux => 2.into_dart(),
+            Self::Android => 3.into_dart(),
+            Self::IOS => 4.into_dart(),
+            _ => unreachable!(),
+        }
+    }
+}
+impl flutter_rust_bridge::for_generated::IntoDartExceptPrimitive
+    for crate::api::client::EmulationOS
+{
+}
+impl flutter_rust_bridge::IntoIntoDart<crate::api::client::EmulationOS>
+    for crate::api::client::EmulationOS
+{
+    fn into_into_dart(self) -> crate::api::client::EmulationOS {
         self
     }
 }
@@ -2518,6 +2812,8 @@ impl SseEncode for crate::api::client::ClientCertificate {
 impl SseEncode for crate::api::client::ClientSettings {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <Option<crate::api::client::Emulation>>::sse_encode(self.emulator, serializer);
+        <Option<crate::api::client::EmulationOption>>::sse_encode(self.emulator_option, serializer);
         <Option<crate::api::client::CookieSettings>>::sse_encode(self.cookie_settings, serializer);
         <crate::api::http::HttpVersionPref>::sse_encode(self.http_version_pref, serializer);
         <Option<crate::api::client::TimeoutSettings>>::sse_encode(
@@ -2548,6 +2844,117 @@ impl SseEncode for crate::api::client::CustomProxy {
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
         <String>::sse_encode(self.url, serializer);
         <crate::api::client::ProxyCondition>::sse_encode(self.condition, serializer);
+    }
+}
+
+impl SseEncode for crate::api::client::Emulation {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::api::client::Emulation::Chrome100 => 0,
+                crate::api::client::Emulation::Chrome101 => 1,
+                crate::api::client::Emulation::Chrome104 => 2,
+                crate::api::client::Emulation::Chrome105 => 3,
+                crate::api::client::Emulation::Chrome106 => 4,
+                crate::api::client::Emulation::Chrome107 => 5,
+                crate::api::client::Emulation::Chrome108 => 6,
+                crate::api::client::Emulation::Chrome109 => 7,
+                crate::api::client::Emulation::Chrome110 => 8,
+                crate::api::client::Emulation::Chrome114 => 9,
+                crate::api::client::Emulation::Chrome116 => 10,
+                crate::api::client::Emulation::Chrome117 => 11,
+                crate::api::client::Emulation::Chrome118 => 12,
+                crate::api::client::Emulation::Chrome119 => 13,
+                crate::api::client::Emulation::Chrome120 => 14,
+                crate::api::client::Emulation::Chrome123 => 15,
+                crate::api::client::Emulation::Chrome124 => 16,
+                crate::api::client::Emulation::Chrome126 => 17,
+                crate::api::client::Emulation::Chrome127 => 18,
+                crate::api::client::Emulation::Chrome128 => 19,
+                crate::api::client::Emulation::Chrome129 => 20,
+                crate::api::client::Emulation::Chrome130 => 21,
+                crate::api::client::Emulation::Chrome131 => 22,
+                crate::api::client::Emulation::Chrome132 => 23,
+                crate::api::client::Emulation::Chrome133 => 24,
+                crate::api::client::Emulation::Chrome134 => 25,
+                crate::api::client::Emulation::Chrome135 => 26,
+                crate::api::client::Emulation::Chrome136 => 27,
+                crate::api::client::Emulation::SafariIos17_2 => 28,
+                crate::api::client::Emulation::SafariIos17_4_1 => 29,
+                crate::api::client::Emulation::SafariIos16_5 => 30,
+                crate::api::client::Emulation::Safari15_3 => 31,
+                crate::api::client::Emulation::Safari15_5 => 32,
+                crate::api::client::Emulation::Safari15_6_1 => 33,
+                crate::api::client::Emulation::Safari16 => 34,
+                crate::api::client::Emulation::Safari16_5 => 35,
+                crate::api::client::Emulation::Safari17_0 => 36,
+                crate::api::client::Emulation::Safari17_2_1 => 37,
+                crate::api::client::Emulation::Safari17_4_1 => 38,
+                crate::api::client::Emulation::Safari17_5 => 39,
+                crate::api::client::Emulation::Safari18 => 40,
+                crate::api::client::Emulation::SafariIPad18 => 41,
+                crate::api::client::Emulation::Safari18_2 => 42,
+                crate::api::client::Emulation::SafariIos18_1_1 => 43,
+                crate::api::client::Emulation::Safari18_3 => 44,
+                crate::api::client::Emulation::Safari18_3_1 => 45,
+                crate::api::client::Emulation::OkHttp3_9 => 46,
+                crate::api::client::Emulation::OkHttp3_11 => 47,
+                crate::api::client::Emulation::OkHttp3_13 => 48,
+                crate::api::client::Emulation::OkHttp3_14 => 49,
+                crate::api::client::Emulation::OkHttp4_9 => 50,
+                crate::api::client::Emulation::OkHttp4_10 => 51,
+                crate::api::client::Emulation::OkHttp4_12 => 52,
+                crate::api::client::Emulation::OkHttp5 => 53,
+                crate::api::client::Emulation::Edge101 => 54,
+                crate::api::client::Emulation::Edge122 => 55,
+                crate::api::client::Emulation::Edge127 => 56,
+                crate::api::client::Emulation::Edge131 => 57,
+                crate::api::client::Emulation::Edge134 => 58,
+                crate::api::client::Emulation::Firefox109 => 59,
+                crate::api::client::Emulation::Firefox117 => 60,
+                crate::api::client::Emulation::Firefox128 => 61,
+                crate::api::client::Emulation::Firefox133 => 62,
+                crate::api::client::Emulation::Firefox135 => 63,
+                crate::api::client::Emulation::FirefoxPrivate135 => 64,
+                crate::api::client::Emulation::FirefoxAndroid135 => 65,
+                crate::api::client::Emulation::Firefox136 => 66,
+                crate::api::client::Emulation::FirefoxPrivate136 => 67,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
+    }
+}
+
+impl SseEncode for crate::api::client::EmulationOption {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <Option<crate::api::client::Emulation>>::sse_encode(self.emulation, serializer);
+        <Option<crate::api::client::EmulationOS>>::sse_encode(self.emulation_os, serializer);
+        <Option<bool>>::sse_encode(self.skip_http2, serializer);
+        <Option<bool>>::sse_encode(self.skip_headers, serializer);
+    }
+}
+
+impl SseEncode for crate::api::client::EmulationOS {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <i32>::sse_encode(
+            match self {
+                crate::api::client::EmulationOS::Windows => 0,
+                crate::api::client::EmulationOS::MacOS => 1,
+                crate::api::client::EmulationOS::Linux => 2,
+                crate::api::client::EmulationOS::Android => 3,
+                crate::api::client::EmulationOS::IOS => 4,
+                _ => {
+                    unimplemented!("");
+                }
+            },
+            serializer,
+        );
     }
 }
 
@@ -2876,6 +3283,16 @@ impl SseEncode for Option<chrono::Duration> {
     }
 }
 
+impl SseEncode for Option<bool> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <bool>::sse_encode(self.is_some(), serializer);
+        if let Some(value) = self {
+            <bool>::sse_encode(value, serializer);
+        }
+    }
+}
+
 impl SseEncode for Option<crate::api::client::ClientCertificate> {
     // Codec=Sse (Serialization based), see doc to use other codecs
     fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
@@ -2902,6 +3319,36 @@ impl SseEncode for Option<crate::api::client::CookieSettings> {
         <bool>::sse_encode(self.is_some(), serializer);
         if let Some(value) = self {
             <crate::api::client::CookieSettings>::sse_encode(value, serializer);
+        }
+    }
+}
+
+impl SseEncode for Option<crate::api::client::Emulation> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <bool>::sse_encode(self.is_some(), serializer);
+        if let Some(value) = self {
+            <crate::api::client::Emulation>::sse_encode(value, serializer);
+        }
+    }
+}
+
+impl SseEncode for Option<crate::api::client::EmulationOption> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <bool>::sse_encode(self.is_some(), serializer);
+        if let Some(value) = self {
+            <crate::api::client::EmulationOption>::sse_encode(value, serializer);
+        }
+    }
+}
+
+impl SseEncode for Option<crate::api::client::EmulationOS> {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    fn sse_encode(self, serializer: &mut flutter_rust_bridge::for_generated::SseSerializer) {
+        <bool>::sse_encode(self.is_some(), serializer);
+        if let Some(value) = self {
+            <crate::api::client::EmulationOS>::sse_encode(value, serializer);
         }
     }
 }

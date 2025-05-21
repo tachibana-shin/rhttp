@@ -6,13 +6,39 @@ use flutter_rust_bridge::{frb, DartFnFuture};
 use rquest::dns::{Addrs, Name, Resolve, Resolving};
 use rquest::tls::Certificate;
 use rquest::{tls, CertStore};
+use rquest_util::{
+    Emulation as rEmulation, EmulationOS as rEmulationOS, EmulationOption as rEmulationOption,
+};
 use std::collections::HashMap;
 use std::net::SocketAddr;
 use std::str::FromStr;
 use std::sync::Arc;
 pub use tokio_util::sync::CancellationToken;
 
+macro_rules! emulation_mapping {
+    (
+        $dto_name:ident => $target_name:ident {
+            $($variant:ident),* $(,)?
+        }
+    ) => {
+        #[derive(Debug, Clone, PartialEq, Eq)]
+        pub enum $dto_name {
+            $( $variant ),*
+        }
+
+        impl From<$dto_name> for $target_name {
+            fn from(dto: $dto_name) -> Self {
+                match dto {
+                    $( $dto_name::$variant => $target_name::$variant ),*
+                }
+            }
+        }
+    };
+}
+
 pub struct ClientSettings {
+    pub emulator: Option<Emulation>,
+    pub emulator_option: Option<EmulationOption>,
     pub cookie_settings: Option<CookieSettings>,
     pub http_version_pref: HttpVersionPref,
     pub timeout_settings: Option<TimeoutSettings>,
@@ -22,6 +48,104 @@ pub struct ClientSettings {
     pub tls_settings: Option<TlsSettings>,
     pub dns_settings: Option<DnsSettings>,
     pub user_agent: Option<String>,
+}
+
+emulation_mapping! {
+    Emulation => rEmulation {
+        Chrome100,
+        Chrome101,
+        Chrome104,
+        Chrome105,
+        Chrome106,
+        Chrome107,
+        Chrome108,
+        Chrome109,
+        Chrome110,
+        Chrome114,
+        Chrome116,
+        Chrome117,
+        Chrome118,
+        Chrome119,
+        Chrome120,
+        Chrome123,
+        Chrome124,
+        Chrome126,
+        Chrome127,
+        Chrome128,
+        Chrome129,
+        Chrome130,
+        Chrome131,
+        Chrome132,
+        Chrome133,
+        Chrome134,
+        Chrome135,
+        Chrome136,
+
+        SafariIos17_2,
+        SafariIos17_4_1,
+        SafariIos16_5,
+        Safari15_3,
+        Safari15_5,
+        Safari15_6_1,
+        Safari16,
+        Safari16_5,
+        Safari17_0,
+        Safari17_2_1,
+        Safari17_4_1,
+        Safari17_5,
+        Safari18,
+        SafariIPad18,
+        Safari18_2,
+        SafariIos18_1_1,
+        Safari18_3,
+        Safari18_3_1,
+        OkHttp3_9,
+        OkHttp3_11,
+        OkHttp3_13,
+        OkHttp3_14,
+        OkHttp4_9,
+        OkHttp4_10,
+        OkHttp4_12,
+        OkHttp5,
+        Edge101,
+        Edge122,
+        Edge127,
+        Edge131,
+        Edge134,
+        Firefox109,
+        Firefox117,
+        Firefox128,
+        Firefox133,
+        Firefox135,
+        FirefoxPrivate135,
+        FirefoxAndroid135,
+        Firefox136,
+        FirefoxPrivate136,
+    }
+}
+
+emulation_mapping! {
+    EmulationOS => rEmulationOS {
+        Windows,
+        MacOS,
+        Linux,
+        Android,
+        IOS,
+    }
+}
+
+pub struct EmulationOption {
+    /// The browser version to emulation.
+    emulation: Option<Emulation>,
+
+    /// The operating system.
+    emulation_os: Option<EmulationOS>,
+
+    /// Whether to skip HTTP/2.
+    skip_http2: Option<bool>,
+
+    /// Whether to skip headers.
+    skip_headers: Option<bool>,
 }
 
 pub struct CookieSettings {
@@ -94,6 +218,8 @@ pub enum TlsVersion {
 impl Default for ClientSettings {
     fn default() -> Self {
         ClientSettings {
+            emulator: None,
+            emulator_option: None,
             cookie_settings: None,
             http_version_pref: HttpVersionPref::All,
             timeout_settings: None,
@@ -130,6 +256,42 @@ impl RequestClient {
 fn create_client(settings: ClientSettings) -> Result<RequestClient, RhttpError> {
     let client: rquest::Client = {
         let mut client: rquest::ClientBuilder = rquest::Client::builder();
+
+        if let Some(emulator) = settings.emulator {
+            let emulation: rEmulation = emulator.into();
+            client = client.emulation(emulation);
+        }
+
+        if let Some(emulator_option) = settings.emulator_option {
+            // Example:
+            //
+            // let emulation_option = EmulationOption::builder()
+            //     .emulation(Emulation::Chrome134)
+            //     .emulation_os(EmulationOS::MacOS)
+            //     .skip_http2(true)
+            //     .skip_headers(false)
+            //     .build();
+
+            client = client.emulation(
+                rEmulationOption::builder()
+                    .emulation(
+                        emulator_option
+                            .emulation // Option<EmulationDto>
+                            .map(|e| e.into()) // Option<rEmulation>
+                            .unwrap_or(rEmulation::Chrome133), // lấy giá trị hoặc default
+                    )
+                    .emulation_os(
+                        emulator_option
+                            .emulation_os
+                            .map(|e| e.into())
+                            .unwrap_or(rEmulationOS::MacOS),
+                    )
+                    .skip_http2(emulator_option.skip_http2.unwrap_or(true))
+                    .skip_headers(emulator_option.skip_headers.unwrap_or(false))
+                    .build(),
+            );
+        }
+
         if let Some(proxy_settings) = settings.proxy_settings {
             match proxy_settings {
                 ProxySettings::NoProxy => client = client.no_proxy(),

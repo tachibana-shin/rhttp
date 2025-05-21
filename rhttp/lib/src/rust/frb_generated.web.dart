@@ -173,6 +173,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Duration dco_decode_box_autoadd_Chrono_Duration(dynamic raw);
 
   @protected
+  bool dco_decode_box_autoadd_bool(dynamic raw);
+
+  @protected
   ClientCertificate dco_decode_box_autoadd_client_certificate(dynamic raw);
 
   @protected
@@ -180,6 +183,15 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   CookieSettings dco_decode_box_autoadd_cookie_settings(dynamic raw);
+
+  @protected
+  Emulation dco_decode_box_autoadd_emulation(dynamic raw);
+
+  @protected
+  EmulationOption dco_decode_box_autoadd_emulation_option(dynamic raw);
+
+  @protected
+  EmulationOS dco_decode_box_autoadd_emulation_os(dynamic raw);
 
   @protected
   HttpBody dco_decode_box_autoadd_http_body(dynamic raw);
@@ -225,6 +237,15 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   CustomProxy dco_decode_custom_proxy(dynamic raw);
+
+  @protected
+  Emulation dco_decode_emulation(dynamic raw);
+
+  @protected
+  EmulationOption dco_decode_emulation_option(dynamic raw);
+
+  @protected
+  EmulationOS dco_decode_emulation_os(dynamic raw);
 
   @protected
   HttpBody dco_decode_http_body(dynamic raw);
@@ -316,6 +337,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Duration? dco_decode_opt_box_autoadd_Chrono_Duration(dynamic raw);
 
   @protected
+  bool? dco_decode_opt_box_autoadd_bool(dynamic raw);
+
+  @protected
   ClientCertificate? dco_decode_opt_box_autoadd_client_certificate(dynamic raw);
 
   @protected
@@ -323,6 +347,15 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   CookieSettings? dco_decode_opt_box_autoadd_cookie_settings(dynamic raw);
+
+  @protected
+  Emulation? dco_decode_opt_box_autoadd_emulation(dynamic raw);
+
+  @protected
+  EmulationOption? dco_decode_opt_box_autoadd_emulation_option(dynamic raw);
+
+  @protected
+  EmulationOS? dco_decode_opt_box_autoadd_emulation_os(dynamic raw);
 
   @protected
   HttpBody? dco_decode_opt_box_autoadd_http_body(dynamic raw);
@@ -511,6 +544,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   Duration sse_decode_box_autoadd_Chrono_Duration(SseDeserializer deserializer);
 
   @protected
+  bool sse_decode_box_autoadd_bool(SseDeserializer deserializer);
+
+  @protected
   ClientCertificate sse_decode_box_autoadd_client_certificate(
       SseDeserializer deserializer);
 
@@ -521,6 +557,16 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   CookieSettings sse_decode_box_autoadd_cookie_settings(
       SseDeserializer deserializer);
+
+  @protected
+  Emulation sse_decode_box_autoadd_emulation(SseDeserializer deserializer);
+
+  @protected
+  EmulationOption sse_decode_box_autoadd_emulation_option(
+      SseDeserializer deserializer);
+
+  @protected
+  EmulationOS sse_decode_box_autoadd_emulation_os(SseDeserializer deserializer);
 
   @protected
   HttpBody sse_decode_box_autoadd_http_body(SseDeserializer deserializer);
@@ -572,6 +618,15 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   CustomProxy sse_decode_custom_proxy(SseDeserializer deserializer);
+
+  @protected
+  Emulation sse_decode_emulation(SseDeserializer deserializer);
+
+  @protected
+  EmulationOption sse_decode_emulation_option(SseDeserializer deserializer);
+
+  @protected
+  EmulationOS sse_decode_emulation_os(SseDeserializer deserializer);
 
   @protected
   HttpBody sse_decode_http_body(SseDeserializer deserializer);
@@ -666,6 +721,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
       SseDeserializer deserializer);
 
   @protected
+  bool? sse_decode_opt_box_autoadd_bool(SseDeserializer deserializer);
+
+  @protected
   ClientCertificate? sse_decode_opt_box_autoadd_client_certificate(
       SseDeserializer deserializer);
 
@@ -675,6 +733,17 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   CookieSettings? sse_decode_opt_box_autoadd_cookie_settings(
+      SseDeserializer deserializer);
+
+  @protected
+  Emulation? sse_decode_opt_box_autoadd_emulation(SseDeserializer deserializer);
+
+  @protected
+  EmulationOption? sse_decode_opt_box_autoadd_emulation_option(
+      SseDeserializer deserializer);
+
+  @protected
+  EmulationOS? sse_decode_opt_box_autoadd_emulation_os(
       SseDeserializer deserializer);
 
   @protected
@@ -895,6 +964,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
       Duration self, SseSerializer serializer);
 
   @protected
+  void sse_encode_box_autoadd_bool(bool self, SseSerializer serializer);
+
+  @protected
   void sse_encode_box_autoadd_client_certificate(
       ClientCertificate self, SseSerializer serializer);
 
@@ -905,6 +977,18 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   void sse_encode_box_autoadd_cookie_settings(
       CookieSettings self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_emulation(
+      Emulation self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_emulation_option(
+      EmulationOption self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_box_autoadd_emulation_os(
+      EmulationOS self, SseSerializer serializer);
 
   @protected
   void sse_encode_box_autoadd_http_body(
@@ -964,6 +1048,16 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
 
   @protected
   void sse_encode_custom_proxy(CustomProxy self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_emulation(Emulation self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_emulation_option(
+      EmulationOption self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_emulation_os(EmulationOS self, SseSerializer serializer);
 
   @protected
   void sse_encode_http_body(HttpBody self, SseSerializer serializer);
@@ -1065,6 +1159,9 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
       Duration? self, SseSerializer serializer);
 
   @protected
+  void sse_encode_opt_box_autoadd_bool(bool? self, SseSerializer serializer);
+
+  @protected
   void sse_encode_opt_box_autoadd_client_certificate(
       ClientCertificate? self, SseSerializer serializer);
 
@@ -1075,6 +1172,18 @@ abstract class RustLibApiImplPlatform extends BaseApiImpl<RustLibWire> {
   @protected
   void sse_encode_opt_box_autoadd_cookie_settings(
       CookieSettings? self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_opt_box_autoadd_emulation(
+      Emulation? self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_opt_box_autoadd_emulation_option(
+      EmulationOption? self, SseSerializer serializer);
+
+  @protected
+  void sse_encode_opt_box_autoadd_emulation_os(
+      EmulationOS? self, SseSerializer serializer);
 
   @protected
   void sse_encode_opt_box_autoadd_http_body(

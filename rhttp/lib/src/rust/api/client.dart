@@ -11,7 +11,7 @@ part 'client.freezed.dart';
 
 // These functions are ignored because they are not marked as `pub`: `create_client`, `new_default`, `new`
 // These types are ignored because they are neither used by any `pub` functions nor (for structs and enums) marked `#[frb(unignore)]`: `DynamicDnsSettings`, `DynamicResolver`, `StaticResolver`
-// These function are ignored because they are on traits that is not defined in current crate (put an empty `#[frb]` on it to unignore): `clone`, `resolve`, `resolve`
+// These function are ignored because they are on traits that is not defined in current crate (put an empty `#[frb]` on it to unignore): `assert_receiver_is_total_eq`, `assert_receiver_is_total_eq`, `clone`, `clone`, `clone`, `eq`, `eq`, `fmt`, `fmt`, `from`, `from`, `resolve`, `resolve`
 
 DnsSettings createStaticResolverSync({required StaticDnsSettings settings}) =>
     RustLib.instance.api
@@ -50,6 +50,8 @@ class ClientCertificate {
 }
 
 class ClientSettings {
+  final Emulation? emulator;
+  final EmulationOption? emulatorOption;
   final CookieSettings? cookieSettings;
   final HttpVersionPref httpVersionPref;
   final TimeoutSettings? timeoutSettings;
@@ -61,6 +63,8 @@ class ClientSettings {
   final String? userAgent;
 
   const ClientSettings({
+    this.emulator,
+    this.emulatorOption,
     this.cookieSettings,
     required this.httpVersionPref,
     this.timeoutSettings,
@@ -77,6 +81,8 @@ class ClientSettings {
 
   @override
   int get hashCode =>
+      emulator.hashCode ^
+      emulatorOption.hashCode ^
       cookieSettings.hashCode ^
       httpVersionPref.hashCode ^
       timeoutSettings.hashCode ^
@@ -92,6 +98,8 @@ class ClientSettings {
       identical(this, other) ||
       other is ClientSettings &&
           runtimeType == other.runtimeType &&
+          emulator == other.emulator &&
+          emulatorOption == other.emulatorOption &&
           cookieSettings == other.cookieSettings &&
           httpVersionPref == other.httpVersionPref &&
           timeoutSettings == other.timeoutSettings &&
@@ -140,6 +148,125 @@ class CustomProxy {
           runtimeType == other.runtimeType &&
           url == other.url &&
           condition == other.condition;
+}
+
+enum Emulation {
+  chrome100,
+  chrome101,
+  chrome104,
+  chrome105,
+  chrome106,
+  chrome107,
+  chrome108,
+  chrome109,
+  chrome110,
+  chrome114,
+  chrome116,
+  chrome117,
+  chrome118,
+  chrome119,
+  chrome120,
+  chrome123,
+  chrome124,
+  chrome126,
+  chrome127,
+  chrome128,
+  chrome129,
+  chrome130,
+  chrome131,
+  chrome132,
+  chrome133,
+  chrome134,
+  chrome135,
+  chrome136,
+  safariIos172,
+  safariIos1741,
+  safariIos165,
+  safari153,
+  safari155,
+  safari1561,
+  safari16,
+  safari165,
+  safari170,
+  safari1721,
+  safari1741,
+  safari175,
+  safari18,
+  safariIPad18,
+  safari182,
+  safariIos1811,
+  safari183,
+  safari1831,
+  okHttp39,
+  okHttp311,
+  okHttp313,
+  okHttp314,
+  okHttp49,
+  okHttp410,
+  okHttp412,
+  okHttp5,
+  edge101,
+  edge122,
+  edge127,
+  edge131,
+  edge134,
+  firefox109,
+  firefox117,
+  firefox128,
+  firefox133,
+  firefox135,
+  firefoxPrivate135,
+  firefoxAndroid135,
+  firefox136,
+  firefoxPrivate136,
+  ;
+}
+
+class EmulationOption {
+  /// The browser version to emulation.
+  final Emulation? emulation;
+
+  /// The operating system.
+  final EmulationOS? emulationOs;
+
+  /// Whether to skip HTTP/2.
+  final bool? skipHttp2;
+
+  /// Whether to skip headers.
+  final bool? skipHeaders;
+
+  const EmulationOption({
+    this.emulation,
+    this.emulationOs,
+    this.skipHttp2,
+    this.skipHeaders,
+  });
+
+  @override
+  int get hashCode =>
+      emulation.hashCode ^
+      emulationOs.hashCode ^
+      skipHttp2.hashCode ^
+      skipHeaders.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is EmulationOption &&
+          runtimeType == other.runtimeType &&
+          emulation == other.emulation &&
+          emulationOs == other.emulationOs &&
+          skipHttp2 == other.skipHttp2 &&
+          skipHeaders == other.skipHeaders;
+}
+
+enum EmulationOS {
+  windows,
+  macOs,
+  linux,
+  android,
+  ios,
+  ;
 }
 
 enum ProxyCondition {

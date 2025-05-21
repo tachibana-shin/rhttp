@@ -18,6 +18,9 @@ const _keepTimeoutSettings = TimeoutSettings();
 const _keepUserAgent = '__rhttp_keep__';
 
 class ClientSettings {
+  final rust_client.Emulation? emulator;
+  final rust_client.EmulationOption? emulatorOption;
+
   /// Base URL to be prefixed to all requests.
   final String? baseUrl;
 
@@ -52,6 +55,8 @@ class ClientSettings {
   final String? userAgent;
 
   const ClientSettings({
+    this.emulator,
+    this.emulatorOption,
     this.baseUrl,
     this.cookieSettings,
     this.httpVersionPref = HttpVersionPref.all,
@@ -65,6 +70,8 @@ class ClientSettings {
   });
 
   ClientSettings copyWith({
+    rust_client.Emulation? emulator,
+    rust_client.EmulationOption? emulatorOption,
     String? baseUrl = _keepBaseUrl,
     CookieSettings? cookieSettings = _keepCookieSettings,
     HttpVersionPref? httpVersionPref,
@@ -77,6 +84,8 @@ class ClientSettings {
     String? userAgent = _keepUserAgent,
   }) {
     return ClientSettings(
+      emulator: emulator ?? this.emulator,
+      emulatorOption: emulatorOption ?? this.emulatorOption,
       baseUrl: identical(baseUrl, _keepBaseUrl) ? this.baseUrl : baseUrl,
       cookieSettings: identical(cookieSettings, _keepCookieSettings)
           ? this.cookieSettings
@@ -371,6 +380,8 @@ class DynamicDnsSettings extends DnsSettings {
 extension ClientSettingsExt on ClientSettings {
   rust_client.ClientSettings toRustType() {
     return rust_client.ClientSettings(
+      emulator: emulator,
+      emulatorOption: emulatorOption,
       cookieSettings: cookieSettings?._toRustType(),
       httpVersionPref: httpVersionPref._toRustType(),
       timeoutSettings: timeoutSettings?._toRustType(),

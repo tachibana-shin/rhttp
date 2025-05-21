@@ -1032,6 +1032,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  bool dco_decode_box_autoadd_bool(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw as bool;
+  }
+
+  @protected
   ClientCertificate dco_decode_box_autoadd_client_certificate(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dco_decode_client_certificate(raw);
@@ -1047,6 +1053,24 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   CookieSettings dco_decode_box_autoadd_cookie_settings(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return dco_decode_cookie_settings(raw);
+  }
+
+  @protected
+  Emulation dco_decode_box_autoadd_emulation(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_emulation(raw);
+  }
+
+  @protected
+  EmulationOption dco_decode_box_autoadd_emulation_option(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_emulation_option(raw);
+  }
+
+  @protected
+  EmulationOS dco_decode_box_autoadd_emulation_os(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return dco_decode_emulation_os(raw);
   }
 
   @protected
@@ -1131,20 +1155,22 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   ClientSettings dco_decode_client_settings(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     final arr = raw as List<dynamic>;
-    if (arr.length != 9)
-      throw Exception('unexpected arr length: expect 9 but see ${arr.length}');
+    if (arr.length != 11)
+      throw Exception('unexpected arr length: expect 11 but see ${arr.length}');
     return ClientSettings(
-      cookieSettings: dco_decode_opt_box_autoadd_cookie_settings(arr[0]),
-      httpVersionPref: dco_decode_http_version_pref(arr[1]),
-      timeoutSettings: dco_decode_opt_box_autoadd_timeout_settings(arr[2]),
-      throwOnStatusCode: dco_decode_bool(arr[3]),
-      proxySettings: dco_decode_opt_box_autoadd_proxy_settings(arr[4]),
-      redirectSettings: dco_decode_opt_box_autoadd_redirect_settings(arr[5]),
-      tlsSettings: dco_decode_opt_box_autoadd_tls_settings(arr[6]),
+      emulator: dco_decode_opt_box_autoadd_emulation(arr[0]),
+      emulatorOption: dco_decode_opt_box_autoadd_emulation_option(arr[1]),
+      cookieSettings: dco_decode_opt_box_autoadd_cookie_settings(arr[2]),
+      httpVersionPref: dco_decode_http_version_pref(arr[3]),
+      timeoutSettings: dco_decode_opt_box_autoadd_timeout_settings(arr[4]),
+      throwOnStatusCode: dco_decode_bool(arr[5]),
+      proxySettings: dco_decode_opt_box_autoadd_proxy_settings(arr[6]),
+      redirectSettings: dco_decode_opt_box_autoadd_redirect_settings(arr[7]),
+      tlsSettings: dco_decode_opt_box_autoadd_tls_settings(arr[8]),
       dnsSettings:
           dco_decode_opt_box_autoadd_Auto_Owned_RustOpaque_flutter_rust_bridgefor_generatedRustAutoOpaqueInnerDnsSettings(
-              arr[7]),
-      userAgent: dco_decode_opt_String(arr[8]),
+              arr[9]),
+      userAgent: dco_decode_opt_String(arr[10]),
     );
   }
 
@@ -1169,6 +1195,32 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       url: dco_decode_String(arr[0]),
       condition: dco_decode_proxy_condition(arr[1]),
     );
+  }
+
+  @protected
+  Emulation dco_decode_emulation(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return Emulation.values[raw as int];
+  }
+
+  @protected
+  EmulationOption dco_decode_emulation_option(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    final arr = raw as List<dynamic>;
+    if (arr.length != 4)
+      throw Exception('unexpected arr length: expect 4 but see ${arr.length}');
+    return EmulationOption(
+      emulation: dco_decode_opt_box_autoadd_emulation(arr[0]),
+      emulationOs: dco_decode_opt_box_autoadd_emulation_os(arr[1]),
+      skipHttp2: dco_decode_opt_box_autoadd_bool(arr[2]),
+      skipHeaders: dco_decode_opt_box_autoadd_bool(arr[3]),
+    );
+  }
+
+  @protected
+  EmulationOS dco_decode_emulation_os(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return EmulationOS.values[raw as int];
   }
 
   @protected
@@ -1440,6 +1492,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  bool? dco_decode_opt_box_autoadd_bool(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw == null ? null : dco_decode_box_autoadd_bool(raw);
+  }
+
+  @protected
   ClientCertificate? dco_decode_opt_box_autoadd_client_certificate(
       dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
@@ -1456,6 +1514,24 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   CookieSettings? dco_decode_opt_box_autoadd_cookie_settings(dynamic raw) {
     // Codec=Dco (DartCObject based), see doc to use other codecs
     return raw == null ? null : dco_decode_box_autoadd_cookie_settings(raw);
+  }
+
+  @protected
+  Emulation? dco_decode_opt_box_autoadd_emulation(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw == null ? null : dco_decode_box_autoadd_emulation(raw);
+  }
+
+  @protected
+  EmulationOption? dco_decode_opt_box_autoadd_emulation_option(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw == null ? null : dco_decode_box_autoadd_emulation_option(raw);
+  }
+
+  @protected
+  EmulationOS? dco_decode_opt_box_autoadd_emulation_os(dynamic raw) {
+    // Codec=Dco (DartCObject based), see doc to use other codecs
+    return raw == null ? null : dco_decode_box_autoadd_emulation_os(raw);
   }
 
   @protected
@@ -1918,6 +1994,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  bool sse_decode_box_autoadd_bool(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_bool(deserializer));
+  }
+
+  @protected
   ClientCertificate sse_decode_box_autoadd_client_certificate(
       SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -1936,6 +2018,26 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     return (sse_decode_cookie_settings(deserializer));
+  }
+
+  @protected
+  Emulation sse_decode_box_autoadd_emulation(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_emulation(deserializer));
+  }
+
+  @protected
+  EmulationOption sse_decode_box_autoadd_emulation_option(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_emulation_option(deserializer));
+  }
+
+  @protected
+  EmulationOS sse_decode_box_autoadd_emulation_os(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    return (sse_decode_emulation_os(deserializer));
   }
 
   @protected
@@ -2025,6 +2127,9 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   @protected
   ClientSettings sse_decode_client_settings(SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_emulator = sse_decode_opt_box_autoadd_emulation(deserializer);
+    var var_emulatorOption =
+        sse_decode_opt_box_autoadd_emulation_option(deserializer);
     var var_cookieSettings =
         sse_decode_opt_box_autoadd_cookie_settings(deserializer);
     var var_httpVersionPref = sse_decode_http_version_pref(deserializer);
@@ -2041,6 +2146,8 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
             deserializer);
     var var_userAgent = sse_decode_opt_String(deserializer);
     return ClientSettings(
+        emulator: var_emulator,
+        emulatorOption: var_emulatorOption,
         cookieSettings: var_cookieSettings,
         httpVersionPref: var_httpVersionPref,
         timeoutSettings: var_timeoutSettings,
@@ -2065,6 +2172,34 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     var var_url = sse_decode_String(deserializer);
     var var_condition = sse_decode_proxy_condition(deserializer);
     return CustomProxy(url: var_url, condition: var_condition);
+  }
+
+  @protected
+  Emulation sse_decode_emulation(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var inner = sse_decode_i_32(deserializer);
+    return Emulation.values[inner];
+  }
+
+  @protected
+  EmulationOption sse_decode_emulation_option(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var var_emulation = sse_decode_opt_box_autoadd_emulation(deserializer);
+    var var_emulationOs = sse_decode_opt_box_autoadd_emulation_os(deserializer);
+    var var_skipHttp2 = sse_decode_opt_box_autoadd_bool(deserializer);
+    var var_skipHeaders = sse_decode_opt_box_autoadd_bool(deserializer);
+    return EmulationOption(
+        emulation: var_emulation,
+        emulationOs: var_emulationOs,
+        skipHttp2: var_skipHttp2,
+        skipHeaders: var_skipHeaders);
+  }
+
+  @protected
+  EmulationOS sse_decode_emulation_os(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    var inner = sse_decode_i_32(deserializer);
+    return EmulationOS.values[inner];
   }
 
   @protected
@@ -2381,6 +2516,17 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  bool? sse_decode_opt_box_autoadd_bool(SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    if (sse_decode_bool(deserializer)) {
+      return (sse_decode_box_autoadd_bool(deserializer));
+    } else {
+      return null;
+    }
+  }
+
+  @protected
   ClientCertificate? sse_decode_opt_box_autoadd_client_certificate(
       SseDeserializer deserializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -2411,6 +2557,42 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
 
     if (sse_decode_bool(deserializer)) {
       return (sse_decode_box_autoadd_cookie_settings(deserializer));
+    } else {
+      return null;
+    }
+  }
+
+  @protected
+  Emulation? sse_decode_opt_box_autoadd_emulation(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    if (sse_decode_bool(deserializer)) {
+      return (sse_decode_box_autoadd_emulation(deserializer));
+    } else {
+      return null;
+    }
+  }
+
+  @protected
+  EmulationOption? sse_decode_opt_box_autoadd_emulation_option(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    if (sse_decode_bool(deserializer)) {
+      return (sse_decode_box_autoadd_emulation_option(deserializer));
+    } else {
+      return null;
+    }
+  }
+
+  @protected
+  EmulationOS? sse_decode_opt_box_autoadd_emulation_os(
+      SseDeserializer deserializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    if (sse_decode_bool(deserializer)) {
+      return (sse_decode_box_autoadd_emulation_os(deserializer));
     } else {
       return null;
     }
@@ -2971,6 +3153,12 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void sse_encode_box_autoadd_bool(bool self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_bool(self, serializer);
+  }
+
+  @protected
   void sse_encode_box_autoadd_client_certificate(
       ClientCertificate self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -2989,6 +3177,27 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
       CookieSettings self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_cookie_settings(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_emulation(
+      Emulation self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_emulation(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_emulation_option(
+      EmulationOption self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_emulation_option(self, serializer);
+  }
+
+  @protected
+  void sse_encode_box_autoadd_emulation_os(
+      EmulationOS self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_emulation_os(self, serializer);
   }
 
   @protected
@@ -3080,6 +3289,9 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   void sse_encode_client_settings(
       ClientSettings self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_opt_box_autoadd_emulation(self.emulator, serializer);
+    sse_encode_opt_box_autoadd_emulation_option(
+        self.emulatorOption, serializer);
     sse_encode_opt_box_autoadd_cookie_settings(self.cookieSettings, serializer);
     sse_encode_http_version_pref(self.httpVersionPref, serializer);
     sse_encode_opt_box_autoadd_timeout_settings(
@@ -3106,6 +3318,28 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     // Codec=Sse (Serialization based), see doc to use other codecs
     sse_encode_String(self.url, serializer);
     sse_encode_proxy_condition(self.condition, serializer);
+  }
+
+  @protected
+  void sse_encode_emulation(Emulation self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.index, serializer);
+  }
+
+  @protected
+  void sse_encode_emulation_option(
+      EmulationOption self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_opt_box_autoadd_emulation(self.emulation, serializer);
+    sse_encode_opt_box_autoadd_emulation_os(self.emulationOs, serializer);
+    sse_encode_opt_box_autoadd_bool(self.skipHttp2, serializer);
+    sse_encode_opt_box_autoadd_bool(self.skipHeaders, serializer);
+  }
+
+  @protected
+  void sse_encode_emulation_os(EmulationOS self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+    sse_encode_i_32(self.index, serializer);
   }
 
   @protected
@@ -3380,6 +3614,16 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
   }
 
   @protected
+  void sse_encode_opt_box_autoadd_bool(bool? self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    sse_encode_bool(self != null, serializer);
+    if (self != null) {
+      sse_encode_box_autoadd_bool(self, serializer);
+    }
+  }
+
+  @protected
   void sse_encode_opt_box_autoadd_client_certificate(
       ClientCertificate? self, SseSerializer serializer) {
     // Codec=Sse (Serialization based), see doc to use other codecs
@@ -3409,6 +3653,39 @@ class RustLibApiImpl extends RustLibApiImplPlatform implements RustLibApi {
     sse_encode_bool(self != null, serializer);
     if (self != null) {
       sse_encode_box_autoadd_cookie_settings(self, serializer);
+    }
+  }
+
+  @protected
+  void sse_encode_opt_box_autoadd_emulation(
+      Emulation? self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    sse_encode_bool(self != null, serializer);
+    if (self != null) {
+      sse_encode_box_autoadd_emulation(self, serializer);
+    }
+  }
+
+  @protected
+  void sse_encode_opt_box_autoadd_emulation_option(
+      EmulationOption? self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    sse_encode_bool(self != null, serializer);
+    if (self != null) {
+      sse_encode_box_autoadd_emulation_option(self, serializer);
+    }
+  }
+
+  @protected
+  void sse_encode_opt_box_autoadd_emulation_os(
+      EmulationOS? self, SseSerializer serializer) {
+    // Codec=Sse (Serialization based), see doc to use other codecs
+
+    sse_encode_bool(self != null, serializer);
+    if (self != null) {
+      sse_encode_box_autoadd_emulation_os(self, serializer);
     }
   }
 
