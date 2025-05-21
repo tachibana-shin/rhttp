@@ -4,12 +4,11 @@ import 'dart:typed_data';
 import 'package:benchmark/benchmark.dart';
 import 'package:benchmark/widgets/benchmark_card.dart';
 import 'package:benchmark/widgets/benchmark_section.dart';
-import;
 import 'package:dio/io.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:http/io_client.dart';
-import 'package:rhttp/rhttp.dart';
+import 'package:rhttp_plus/rhttp_plus.dart';
 
 void main() async {
   await Rhttp.init();
