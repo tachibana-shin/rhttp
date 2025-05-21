@@ -8,20 +8,18 @@ crate-type = ["cdylib", "staticlib"]
 
 [dependencies]
 chrono = "0.4.39"
-flutter_rust_bridge = { version = "=2.9.0", features = ["chrono"] }
+flutter_rust_bridge = { version = "=2.10.0", features = ["chrono"] }
 futures-util = "0.3.31"
 tokio = { version = "1.43.0", features = ["full"] }
 tokio-util = "0.7.12"
+rquest-util = "2"
 
-[dependencies.reqwest]
-version = "0.12.12"
+[dependencies.rquest]
+version = "5"
 default-features = false
 features = [
     "charset",
     "cookies",
-    "http2",
-    "http3",
-    "rustls-tls-webpki-roots",
     "stream",
     "multipart",
     "socks",

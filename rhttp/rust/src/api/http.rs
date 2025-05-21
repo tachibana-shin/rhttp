@@ -1,8 +1,8 @@
 use flutter_rust_bridge::for_generated::anyhow;
 use flutter_rust_bridge::{frb, DartFnFuture};
 use futures_util::StreamExt;
-use reqwest::header::{HeaderName, HeaderValue};
-use reqwest::{Method, Response, Url, Version};
+use rquest::header::{HeaderName, HeaderValue};
+use rquest::{Method, Response, Url, Version};
 use std::collections::HashMap;
 use std::error::Error;
 use std::str::FromStr;
@@ -59,7 +59,6 @@ pub enum HttpVersionPref {
     Http10,
     Http11,
     Http2,
-    Http3,
     All,
 }
 
@@ -365,7 +364,7 @@ async fn make_http_request_helper(
             HttpVersionPref::Http10 => request.version(Version::HTTP_10),
             HttpVersionPref::Http11 => request.version(Version::HTTP_11),
             HttpVersionPref::Http2 => request.version(Version::HTTP_2),
-            HttpVersionPref::Http3 => request.version(Version::HTTP_3),
+            // HttpVersionPref::Http3 => request.version(Version::HTTP_3),
             HttpVersionPref::All => request,
         };
 
@@ -404,21 +403,21 @@ async fn make_http_request_helper(
                     .receiver
                     .map(|v| Ok::<Vec<u8>, RhttpError>(v));
 
-                let body = reqwest::Body::wrap_stream(stream);
+                let body = rquest::Body::wrap_stream(stream);
                 request.body(body)
             }
             Some(HttpBody::Form(form)) => request.form(&form),
             Some(HttpBody::Multipart(body)) => {
-                let mut form = reqwest::multipart::Form::new();
+                let mut form = rquest::multipart::Form::new();
                 for (k, v) in body.parts {
                     let mut part = match v.value {
-                        MultipartValue::Text(text) => reqwest::multipart::Part::text(text),
-                        MultipartValue::Bytes(bytes) => reqwest::multipart::Part::bytes(bytes),
+                        MultipartValue::Text(text) => rquest::multipart::Part::text(text),
+                        MultipartValue::Bytes(bytes) => rquest::multipart::Part::bytes(bytes),
                         MultipartValue::File(file) => {
                             let file = tokio::fs::File::open(file).await.map_err(|_| {
                                 RhttpError::RhttpUnknownError("Failed to open file".to_string())
                             })?;
-                            reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(
+                            rquest::multipart::Part::stream(rquest::Body::wrap_stream(
                                 tokio_util::io::ReaderStream::new(file),
                             ))
                         }
@@ -503,7 +502,7 @@ async fn make_http_request_helper(
     Ok(response)
 }
 
-fn header_to_vec(headers: &reqwest::header::HeaderMap) -> Vec<(String, String)> {
+fn header_to_vec(headers: &rquest::header::HeaderMap) -> Vec<(String, String)> {
     headers
         .iter()
         .map(|(k, v)| (k.as_str().to_string(), v.to_str().unwrap().to_string()))
