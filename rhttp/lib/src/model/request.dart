@@ -221,8 +221,8 @@ enum HttpVersionPref {
   /// Only use HTTP/2.
   http2,
 
-  /// Only use HTTP/3.
-  http3,
+  ///// Only use HTTP/3.
+  // http3,
 
   /// Default behavior: Let the server decide.
   all,

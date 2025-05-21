@@ -37,7 +37,7 @@ class _MyAppState extends State<MyApp> {
                       'https://reqres.in/api/users',
                       query: {'page': '5'},
                       settings: const ClientSettings(
-                        httpVersionPref: HttpVersionPref.http3,
+                        // httpVersionPref: HttpVersionPref.http3,
                       ),
                       interceptors: [
                         _ReturnFakeInterceptor(),
@@ -60,7 +60,7 @@ class _MyAppState extends State<MyApp> {
                       'https://reqres.in/api/users',
                       query: {'page': '5'},
                       settings: const ClientSettings(
-                        httpVersionPref: HttpVersionPref.http3,
+                        // httpVersionPref: HttpVersionPref.http3,
                       ),
                       interceptors: [
                         _ReturnFakeAfterSendInterceptor(),

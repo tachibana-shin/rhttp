@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
                       HttpHeaderName.lastModified: 'application/json',
                     }),
                     settings: const ClientSettings(
-                      httpVersionPref: HttpVersionPref.http3,
+                      // httpVersionPref: HttpVersionPref.http3,
                     ),
                   );
 
