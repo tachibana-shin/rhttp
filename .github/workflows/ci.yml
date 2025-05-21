@@ -23,13 +23,13 @@ jobs:
           channel: "stable"
 
       - name: Dependencies
-        working-directory: rhttp
+        working-directory: rhttp_plus
         run: flutter pub get
       - name: Check format
-        working-directory: rhttp
+        working-directory: rhttp_plus
         run: dart format --set-exit-if-changed lib bin test
       - name: Analyze
-        working-directory: rhttp
+        working-directory: rhttp_plus
         run: flutter analyze
 
   format_oldest:
@@ -44,16 +44,16 @@ jobs:
           channel: "stable"
 
       - name: Remove example
-        working-directory: rhttp
+        working-directory: rhttp_plus
         run: rm -rf example
       - name: Downgrade
-        working-directory: rhttp
+        working-directory: rhttp_plus
         run: flutter pub downgrade
       - name: Check format
-        working-directory: rhttp
+        working-directory: rhttp_plus
         run: dart format --set-exit-if-changed lib bin test
       - name: Analyze
-        working-directory: rhttp
+        working-directory: rhttp_plus
         run: flutter analyze
 
   test:
@@ -68,8 +68,8 @@ jobs:
           channel: "stable"
 
       - name: Dependencies
-        working-directory: rhttp
+        working-directory: rhttp_plus
         run: flutter pub get
       - name: Test
-        working-directory: rhttp
+        working-directory: rhttp_plus
         run: flutter test

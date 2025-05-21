@@ -1,4 +1,4 @@
-library rhttp;
+library rhttp_plus;
 
 export 'src/client/compatible_client.dart'
     show RhttpCompatibleClient, RhttpWrappedClientException;

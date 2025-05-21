@@ -7,7 +7,7 @@ PODS:
     - Flutter
   - objective_c (0.0.1):
     - Flutter
-  - rhttp (0.0.1):
+  - rhttp_plus (0.0.1):
     - Flutter
 
 DEPENDENCIES:
@@ -15,7 +15,7 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - objective_c (from `.symlinks/plugins/objective_c/ios`)
-  - rhttp (from `.symlinks/plugins/rhttp/ios`)
+  - rhttp_plus (from `.symlinks/plugins/rhttp_plus/ios`)
 
 EXTERNAL SOURCES:
   cupertino_http:

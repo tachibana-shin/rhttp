@@ -5,16 +5,16 @@
 cmake_minimum_required(VERSION 3.14)
 
 # Project-level configuration.
-set(PROJECT_NAME "rhttp")
+set(PROJECT_NAME "rhttp_plus")
 project(${PROJECT_NAME} LANGUAGES CXX)
 
 include("../cargokit/cmake/cargokit.cmake")
-apply_cargokit(${PROJECT_NAME} ../rust rhttp "")
+apply_cargokit(${PROJECT_NAME} ../rust rhttp_plus "")
 
 # List of absolute paths to libraries that should be bundled with the plugin.
 # This list could contain prebuilt libraries, or libraries created by an
 # external build triggered from this build file.
-set(rhttp_bundled_libraries
+set(rhttp_plus_bundled_libraries
   "${${PROJECT_NAME}_cargokit_lib}"
   PARENT_SCOPE
 )

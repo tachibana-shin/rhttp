@@ -228,7 +228,7 @@ String _getToolchainVersion(String fallback) {
   // C:\Users\user\rhttp\rhttp\example
   // taking the parent of the right most "build" directory to get the project root,
   // while removing the "rhttp/build/build_tool" suffix
-  final buildIndex = workingDirectory.replaceAll('rhttp/build/build_tool', '').lastIndexOf('/build/');
+  final buildIndex = workingDirectory.replaceAll('rhttp_plus/build/build_tool', '').lastIndexOf('/build/');
   if (buildIndex != -1) {
     final parent = workingDirectory.substring(0, buildIndex);
     final toolchainFile = File(path.join(parent, 'rust-toolchain.toml'));
