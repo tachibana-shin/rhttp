@@ -6,7 +6,7 @@ import 'package:rhttp/src/model/request.dart';
 import 'package:rhttp/src/rust/api/client.dart' as rust_client;
 import 'package:rhttp/src/rust/api/http.dart' as rust;
 
-export 'package:rhttp/src/rust/api/client.dart' show TlsVersion;
+export 'package:rhttp/src/rust/api/client.dart' show TlsVersion, Emulation, EmulationOS, EmulationOption;
 
 const _keepBaseUrl = '__rhttp_keep__';
 const _keepCookieSettings = CookieSettings.none();
