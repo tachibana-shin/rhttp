@@ -136,16 +136,16 @@ emulation_mapping! {
 
 pub struct EmulationOption {
     /// The browser version to emulation.
-    emulation: Option<Emulation>,
+    pub emulation: Option<Emulation>,
 
     /// The operating system.
-    emulation_os: Option<EmulationOS>,
+    pub emulation_os: Option<EmulationOS>,
 
     /// Whether to skip HTTP/2.
-    skip_http2: Option<bool>,
+    pub skip_http2: Option<bool>,
 
     /// Whether to skip headers.
-    skip_headers: Option<bool>,
+    pub skip_headers: Option<bool>,
 }
 
 pub struct CookieSettings {
