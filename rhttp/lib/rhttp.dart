@@ -53,6 +53,9 @@ export 'src/model/request.dart'
         MultiPartFile;
 export 'src/model/settings.dart'
     show
+        Emulation,
+        EmulationOS,
+        EmulationOption,
         ClientSettings,
         CookieSettings,
         TimeoutSettings,
