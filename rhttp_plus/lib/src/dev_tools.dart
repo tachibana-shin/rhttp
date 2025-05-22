@@ -26,7 +26,7 @@ HttpClientRequestProfile? createDevToolsProfile({
   }
 
   profile.connectionInfo = {
-    'package': 'package:rhttp',
+    'package': 'package:rhttp_plus',
   };
 
   profile.requestData
