@@ -1,6 +1,6 @@
 name: rhttp_plus
 description: An ergonomic all-in-one HTTP client for browser emulation with TLS, JA3/JA4, and HTTP/2 fingerprints.
-version: 0.11.6
+version: 0.11.7
 repository: https://github.com/tachibana-shin/rhttp_plus
 topics:
   - http
